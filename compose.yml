@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  restricted_service:
+    image: straubt1/terraform-agent-mod:dev
+    container_name: tt-local-agent
+    networks:
+      - restricted_net
+    environment:
+      - http_proxy=http://squid_proxy:3128
+      - https_proxy=http://squid_proxy:3128
+      - TFC_ADDRESS=https://tfe.hc-6be5777e989c4fab8c400322fcb.gcp.sbx.hashicorpdemo.com
+      - TFC_AGENT_NAME=tt-local
+      - TFC_AGENT_TOKEN=$TFC_AGENT_TOKEN
+
+  squid_proxy:
+    image: sameersbn/squid:latest
+    container_name: squid_proxy
+    volumes:
+      - ./deny-list-squid.conf:/etc/squid/squid.conf  # Take the Allow all, but block some approach
+      # - ./allow-list-squid.conf:/etc/squid/squid.conf  # Take the Deny all, but allow some approach
+    networks:
+      - restricted_net
+    ports:
+      - "3128:3128"  # Expose Squid proxy port
+
+networks:
+  restricted_net:
+    driver: bridge
