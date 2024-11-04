@@ -10,12 +10,12 @@ if [[ -n "$TERRAFORM_NETWORK_MIRROR_PATH" ]]; then
 
   cat >> "${HOME}/.terraformrc" << EOF
 
-  provider_installation {
-    filesystem_mirror {
-      path = "${TERRAFORM_NETWORK_MIRROR_PATH}"
-      include = ["registry.terraform.io/*/*"]
-    }
+provider_installation {
+  filesystem_mirror {
+    path = "${TERRAFORM_NETWORK_MIRROR_PATH}"
+    include = ["registry.terraform.io/*/*"]
   }
+}
 EOF
 
 fi
