@@ -1,0 +1,27 @@
+version: '3'
+
+vars:
+  GKE_CLUSTER_NAME: "tfe-prod"
+  GCP_REGION: "us-central1"
+  GCP_PROJECT_ID: "hc-6be5777e989c4fab8c400322fcb"
+
+  HOSTNAME: "https://tfe.hc-6be5777e989c4fab8c400322fcb.gcp.sbx.hashicorpdemo.com"
+  AGENT_NAME: "tt-local"
+  IMAGE_NAME: "straubt1/terraform-agent-mod"
+  IMAGE_TAG: "dev"
+env:
+  DOCKER_DEFAULT_PLATFORM: "linux/amd64" #Force for Mac with M-series chips
+tasks:
+  agent-build:
+    cmds:
+      - echo $DOCKER_DEFAULT_PLATFORM
+      - docker build -t {{.IMAGE_NAME}}:{{.IMAGE_TAG}} .
+  agent-run:
+    cmds:
+      - |
+        docker run --rm \
+        -e TFC_ADDRESS={{.HOSTNAME}} \
+        -e TFC_AGENT_TOKEN \
+        -e TFC_AGENT_NAME={{.AGENT_NAME}} \
+        -e TFC_AGENT_LOG_LEVEL=debug \
+        {{.IMAGE_NAME}}:{{.IMAGE_TAG}}

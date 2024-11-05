@@ -1,0 +1,27 @@
+{
+  "providers": [
+      {
+          "namespace": "hashicorp",
+          "name": "random",
+          "versions": [
+              "2.3.0",
+              "3.6.3"
+          ]
+      },
+      {
+          "namespace": "hashicorp",
+          "name": "external",
+          "versions": [
+              "2.3.4"
+          ]
+      },
+      {
+          "namespace": "hashicorp",
+          "name": "time",
+          "versions": [
+              "0.12.1"
+          ]
+      }
+  ]
+}
+

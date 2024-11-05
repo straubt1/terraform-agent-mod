@@ -1,0 +1,7 @@
+#!/bin/bash
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+source ${SCRIPT_DIR}/lib/agent-script.sh "POST_PLAN"
+
+echo "Executing post-plan hook... Complete"
