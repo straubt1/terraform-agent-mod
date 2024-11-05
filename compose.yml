@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   restricted_service:
     image: straubt1/terraform-agent-mod:dev

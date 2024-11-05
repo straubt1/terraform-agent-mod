@@ -3,7 +3,7 @@
 # Exit if any of the intermediate steps fail
 set -e
 
-sleep_duration=$1
+sleep_duration=${1:-1}
 
 sleep $sleep_duration
 
