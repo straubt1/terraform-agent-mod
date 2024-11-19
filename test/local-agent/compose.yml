@@ -2,6 +2,7 @@ services:
   restricted_service:
     image: straubt1/terraform-agent-mod:dev
     container_name: tt-local-agent
+    # restart: always
     networks:
       - restricted_net
     environment:
@@ -10,6 +11,7 @@ services:
       - TFC_ADDRESS=https://tfe.hc-6be5777e989c4fab8c400322fcb.gcp.sbx.hashicorpdemo.com
       - TFC_AGENT_NAME=tt-local
       - TFC_AGENT_TOKEN=$TFC_AGENT_TOKEN
+      # - TFC_AGENT_SINGLE=true
 
   squid_proxy:
     image: sameersbn/squid:latest
