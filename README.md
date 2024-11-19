@@ -121,3 +121,6 @@ TFC_WORKSPACE_SLUG=terraform-tom/agent-workspace-1
 TFE_RUN_ID=run-eEMVMw45sDJdZSsk
 _=/usr/bin/printenv
 ```
+
+Terraform is downloaded and placed:
+`/home/tfc-agent/.tfc-agent/component/terraform/runs/{Run id}/bin/terraform`
